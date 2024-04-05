@@ -1,6 +1,12 @@
+import { dashboardget } from '@/utils/api'
 import React from 'react'
 
-const dashboard = () => {
+
+const dashboard = async () => {
+  const data = await  dashboardget();
+  console.log(data)
+
+
   return (
     <>
       <div className='py-4'>

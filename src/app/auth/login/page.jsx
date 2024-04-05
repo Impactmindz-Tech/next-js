@@ -7,6 +7,7 @@ import { profileValidation } from '@/utils/validation/FormValidation';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { LoginPage } from '@/utils/api';
+import { setLocalStorage } from '@/utils/LocalStorageUtills';
 
 const page = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(profileValidation) });
@@ -14,12 +15,12 @@ const page = () => {
 
     const onSubmit = async (data) => {
         const body = {
-            username: data.email,
+            username: data.user,
             password: data.password
         }
         try {
             const data = await LoginPage(body)
-            console.log(data)
+            setLocalStorage('token' , data.token)
             router.push('/admin/dashboard')
         } catch (error) {
             console.log(error)
@@ -37,13 +38,13 @@ const page = () => {
                         <div className='2xl:p-4 border border-input-placeholder border-[#000E2F70] flex items-center gap-x-2 rounded-xl p-3 relative mt-2'>
                             <label className='2xl:text-sm absolute bg-white text-input-label -top-2 left-5 text-[11px] px-1'>Email</label>
                             <Image width={12} height={12} src="http://beautyspot.codingcopz.in/static/media/email.78db72a51f6c96abe7fe0564c5e1850f.svg" />
-                            <input className='w-full outline-none text-[12px] text-input-placeholder' placeholder='michellejohnson125@gmail.com' type='email' {...register('email')} />
+                            <input className='w-full outline-none text-[12px] text-input-placeholder' placeholder='michellejohnson125@gmail.com' name='user' type='text' {...register('user')} />
                         </div>
                         <p>{errors.email?.message}</p>
                         <div className='2xl:p-4 border border-input-placeholder border-[#000E2F70] flex items-center gap-x-2 rounded-xl p-3 relative mt-2'>
                             <label className='2xl:text-sm absolute bg-white text-input-label -top-2 left-5 text-[11px] px-1'>Password</label>
                             <Image width={12} height={12} src="http://beautyspot.codingcopz.in/static/media/email.78db72a51f6c96abe7fe0564c5e1850f.svg" />
-                            <input className='w-full outline-none text-[12px] text-input-placeholder' type='text' placeholder='********' {...register('password')} />
+                            <input className='w-full outline-none text-[12px] text-input-placeholder' type='text' name='password' placeholder='********' {...register('password')} />
                         </div>
                         <p>{errors.password?.message}</p>
                         <Link href={''} className="text-[11px] my-2 mr-2 text-input-placeholder w-max ml-auto">Forgot Password ?</Link>
