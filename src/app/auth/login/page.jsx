@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { LoginPage } from '@/utils/api';
 import { setLocalStorage } from '@/utils/LocalStorageUtills';
+import toast, { Toaster } from 'react-hot-toast';
 
 const page = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(profileValidation) });
@@ -20,10 +21,12 @@ const page = () => {
         }
         try {
             const data = await LoginPage(body)
-            setLocalStorage('token' , data.token)
-            router.push('/admin/dashboard')
+                setLocalStorage('token', data.token)
+                router.push('/admin/dashboard')
+                toast.success("Success")
         } catch (error) {
-            console.log(error)
+            toast.error(error?.response?.data?.message)
+            console.log(error, 'tinku')
         }
     }
 
@@ -40,7 +43,7 @@ const page = () => {
                             <Image width={12} height={12} src="http://beautyspot.codingcopz.in/static/media/email.78db72a51f6c96abe7fe0564c5e1850f.svg" />
                             <input className='w-full outline-none text-[12px] text-input-placeholder' placeholder='michellejohnson125@gmail.com' name='user' type='text' {...register('user')} />
                         </div>
-                        <p>{errors.email?.message}</p>
+                        <p>{errors.user?.message}</p>
                         <div className='2xl:p-4 border border-input-placeholder border-[#000E2F70] flex items-center gap-x-2 rounded-xl p-3 relative mt-2'>
                             <label className='2xl:text-sm absolute bg-white text-input-label -top-2 left-5 text-[11px] px-1'>Password</label>
                             <Image width={12} height={12} src="http://beautyspot.codingcopz.in/static/media/email.78db72a51f6c96abe7fe0564c5e1850f.svg" />
@@ -51,7 +54,7 @@ const page = () => {
                         <button className='sign-in text-center mt-6 bg-[#E5B3B2] w-max mx-auto text-white text-[10px] px-12 py-3 rounded-lg flex items-center gap-x-2'>Sign In</button>
                     </form>
                 </div>
-
+                <Toaster />
             </div>
         </>
     )

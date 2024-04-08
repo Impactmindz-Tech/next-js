@@ -13,11 +13,10 @@ export const LoginPage = async (data)=>{
 }
 export const dashboardget = async ()=>{
     try {
-        const res = await axiosInstance.get('/products/1') 
+        const res = await axiosInstance.get('/auth/me') 
         return res.data
     } catch (error) {
-        console.log(error)
-        throw error
+        console.log(error ,"auth/me api")
     }
 
 }
