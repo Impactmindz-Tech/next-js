@@ -9,7 +9,7 @@ export const LoginAtuh = () => {
     useEffect(() => {
         if (!isAuthenticated) {
             router.push("/auth/login")
-        }else{
+        } else {
             router.push("/admin/dashboard")
         }
     }, [router])
@@ -22,7 +22,7 @@ export const AdminAuth = (slug) => {
     const isAuthenticated = getLocalStorage("token")
     useEffect(() => {
         if (isAuthenticated) {
-            router.push("/admin/"+slug)
+            router.push("/admin/" + slug)
         }
     }, [router])
 

@@ -36,3 +36,7 @@ body {
 .box-shadow {
   box-shadow: 0 0 6px #272d3b2e;
 }
+
+.no-scrollbar::-webkit-scrollbar{
+  display: none;
+}

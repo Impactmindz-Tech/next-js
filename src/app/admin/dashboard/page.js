@@ -30,7 +30,7 @@ const dashboard = () => {
       <div className='py-4'>
         <h2 className='font-semibold text-lg title text-[#000000]'>Dashboard</h2>
       </div>
-      <div className='bg-white search-custom-space main-scroll w-full min-h-[calc(100vh-170px)] h-[380px] overflow-scroll flex flex-col gap-y-4 box-shadow rounded-2xl relative'>
+      <div className='bg-white no-scrollbar p-4 search-custom-space main-scroll w-full min-h-[calc(100vh-170px)] h-[380px] overflow-scroll flex flex-col gap-y-4 box-shadow rounded-2xl relative'>
         dsdsfd
       </div>
     </>
