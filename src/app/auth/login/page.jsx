@@ -9,8 +9,10 @@ import { useRouter } from 'next/navigation';
 import { LoginPage } from '@/utils/api';
 import { setLocalStorage } from '@/utils/LocalStorageUtills';
 import toast, { Toaster } from 'react-hot-toast';
+import { LoginAtuh } from '@/app/authentication/Login';
 
 const page = () => {
+    LoginAtuh()
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(profileValidation) });
     const router = useRouter();
 

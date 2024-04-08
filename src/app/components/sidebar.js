@@ -23,11 +23,11 @@ const Sidebar = () => {
     ];
     return (
         <>
-                    <div className='w-52 main_sidenav h-full flex flex-col bg-primary-500 py-5 pl-5 relative duration-300 z-10'>
+                    <div className='w-52 main_sidenav h-full flex flex-col bg-primary-500 py-5 px-5 relative duration-300 z-10'>
                         <div className='flex justify-center'>
                             <img className='block p-1 bg-primary-900 cursor-pointer w-14 rounded-full  false' src='http://beautyspot.codingcopz.in/static/media/logo.79a04e716a5ee4efc741.png' />
                         </div>
-                        <ul className='mt-4 overflow-y-scroll no-scrollbar'>
+                        <ul className='mt-4 no-scrollbar'>
                             {links.map((item, i) => (
                                 <li key={i} className='p-3 bg-white my-2 rounded-xl flex items-center'>
                                     <img className='w-4 h-4' src={item.src} alt='' />

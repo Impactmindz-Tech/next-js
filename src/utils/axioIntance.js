@@ -1,5 +1,7 @@
 import axios from "axios";
 import { getLocalStorage } from "./LocalStorageUtills";
+import { useRouter } from "next/navigation";
+import { authorisation } from "@/app/auth/login/page";
 
 export const axiosInstance = axios.create({
     baseURL: "https://dummyjson.com",
@@ -27,9 +29,9 @@ axiosInstance.interceptors.response.use(
         return response
     },
     error =>{
-        if(error.response && error.response.status === 401 || error.response.status == 404){
+        if(error.response && error.response.status === 401 || error.response.status == 404 || error.response.status == 403 ){
             localStorage.clear()
-            window.location.href = "/auth/login";
+            window.location.href = "/auth/login"; 
         }
         return Promise.reject(error);
     }
